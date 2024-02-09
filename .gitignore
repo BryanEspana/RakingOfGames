@@ -9,6 +9,13 @@ lerna-debug.log*
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# Archivos de configuración de IDE/editor
+/.vscode/
+/.idea/
+*.swp
+*~.nib
+local.properties
+
 # Runtime data
 pids
 *.pid
@@ -86,3 +93,23 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Sistema de archivos OS
+.DS_Store
+Thumbs.db
+
+# Directorios de salida de compilación
+/dist
+/tmp
+/out-tsc
+
+# Archivos de configuración de Angular específicos
+/angular.json
+/karma.conf.js
+/tsconfig.json
+/tslint.json
+
+# Archivos de log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
