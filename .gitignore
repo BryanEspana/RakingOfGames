@@ -6,6 +6,14 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+
+# Archivos de compilación
+/dist/
+/tmp/
+/out-tsc/
+
+# Archivos de caché de Angular
+/.angular/cache/
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
