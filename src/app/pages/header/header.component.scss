@@ -1,0 +1,45 @@
+/* header.component.css */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--color-black);
+    color: white;
+    position: relative;
+    z-index: 1000;
+    
+  }
+  
+  header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 60px;
+  }
+
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  a{
+    padding: 0.8rem;
+  }
+  a:hover{
+    background-color: rgb(43, 43, 43) !important;
+    padding: 0.8rem;
+    border-radius: 10px;
+  }
