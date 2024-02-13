@@ -14,6 +14,7 @@
   .carousel-item {
     flex: 0 0 auto;
     margin-right: 15px;
+    width: 270px;
     /* Tus estilos existentes para los ítems */
   }
   
@@ -44,7 +45,11 @@
 
   }
   .imgGame{
-    width: 270px;
+    width: 270px; /* Fija el ancho de la imagen */
+    height: 270px; /* Fija el alto de la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */
+    display: block; /* Elimina cualquier espacio extra alrededor de la imagen */
+    margin: 0 auto; 
     border-radius: 20px;
   }
   .carousel-item{
@@ -63,3 +68,21 @@
     font-weight: 600;
     font-size: 20px !important;
   }
+.imgDiv{
+  position: relative;
+}
+.Metacritic{
+  position: absolute;
+  bottom: 0px;
+  font-size: 28px;
+  width: 95%;
+  height: 42px;
+  border-bottom-left-radius: 20px;
+  padding: 2px 0px;
+  align-items: end;
+  display: flex;
+  border-bottom-right-radius: 20px;
+  justify-content: end;
+  padding-right: 15px;
+  background-color: #000000ba;
+}
