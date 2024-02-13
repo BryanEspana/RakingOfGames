@@ -74,15 +74,18 @@
 .Metacritic{
   position: absolute;
   bottom: 0px;
-  font-size: 28px;
-  width: 95%;
+  font-size: 21px;
+  width: 59px;
   height: 42px;
-  border-bottom-left-radius: 20px;
-  padding: 2px 0px;
-  align-items: end;
+  /* border-bottom-left-radius: 20px; */
+  padding: 2px 10px;
+  align-items: center;
   display: flex;
-  border-bottom-right-radius: 20px;
-  justify-content: end;
+  /* border-bottom-right-radius: 20px; */
+  justify-content: center;
   padding-right: 15px;
-  background-color: #000000ba;
+  /* justify-content: center; */
+  /* background-color: rgba(0, 0, 0, 0.7294117647); */
+  background: var(--color-primary);
+  border-radius: 19px;
 }

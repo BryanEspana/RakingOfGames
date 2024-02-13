@@ -9,14 +9,22 @@ import { GamesService } from 'src/services/games.service';
 })
 export class InitialComponent implements OnInit {
   ListaMejoresJuegos: CarouselItem[] = [];
-  listaItems: CarouselItem[] = [
-  ]
+  ListShooters: CarouselItem[] = [];
+  listaItems: CarouselItem[] = []
+  ListProximosLanzamientos: CarouselItem[] = []
+  ListWorstGames: CarouselItem[] = []
+  ListSports: CarouselItem[] = []
+  ListMostPlayers: CarouselItem[] = []
   constructor(
     private serviceGames: GamesService
   ) { }
 
   ngOnInit() {
     this.TraerMejoresJuegos();
+    this.GetTopShooters();
+    this.getProximosLanzamientos();
+    this.getTopSports();
+    this.getPeoresJuegos();
   }
 
   TraerMejoresJuegos(){
@@ -30,6 +38,52 @@ export class InitialComponent implements OnInit {
       }
       );
     }
-  
+
+    GetTopShooters(){
+      this.serviceGames.ObtenerTopShooters().subscribe(
+        (games) =>{
+          this.ListShooters = games;
+          console.log('aqui estan los shooters: ', games);
+        },
+        (error) =>{
+          console.error("Error al obtener los mejores juegos:", error);
+        }
+        );
+    }
+
+    getProximosLanzamientos(){
+      
+      this.serviceGames.ObtenerProximosLanzamientos().subscribe(
+        (games) =>{
+          this.ListProximosLanzamientos = games;
+          console.log('aqui estan los proximos lanzamientos: ', games);
+        },
+
+        );
+    }
+
+    getTopSports(){
+      this.serviceGames.ObtenerTopSports().subscribe(
+        (games) =>{
+          this.ListSports = games;
+          console.log('aqui estan los proximos lanzamientos: ', games);
+        },
+        (error) =>{
+          console.error("Error al obtener los mejores juegos:", error);
+        }
+        );
+    }
+
+    getPeoresJuegos(){
+      this.serviceGames.ObtenerPeoresJuegos().subscribe(
+        (games) =>{
+          this.ListWorstGames = games;
+          console.log('aqui estan los peores juegos: ', games);
+        },
+        (error) =>{
+          console.error("Error al obtener los peores juegos:", error);
+        }
+        );
+    }
 
 }
