@@ -1,4 +1,6 @@
 
+//All-games
+export const ALL_GAMES_URL = '/games';
 //top-games
 export const TOP_GAMES_URL = '/top-games';
 //Proximos lanzamientos

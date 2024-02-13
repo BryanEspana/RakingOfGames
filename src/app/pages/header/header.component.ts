@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,10 @@ export class HeaderComponent implements OnInit {
 
   scrolled = false;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
   }
@@ -18,5 +22,12 @@ export class HeaderComponent implements OnInit {
   onWindowScroll() {
     const offset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.scrolled = offset > 10;
+  }
+
+  GoToGames(){
+    this.router.navigate(['/total-games']);
+  }
+  GoHome(){
+    this.router.navigate(['/home']);
   }
 }

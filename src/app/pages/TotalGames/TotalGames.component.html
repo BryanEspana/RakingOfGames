@@ -1,0 +1,18 @@
+<div  class="PageTotalGames">
+
+  <h1>Listado de juegos</h1>
+  <div class="displayrow between">
+    <!--search-->
+    <div class="carousel-content" #carousel>
+      <div *ngFor="let item of ListGames" class="carousel-item">
+        <div class="imgDiv">
+          <img src="{{ item.image }}" alt="{{ item.name }}" class="imgGame">
+          <p class="Metacritic">{{item.rating}}/5</p>
+        </div>
+        <div class="textGame">
+          <p class="category">{{ item.genre }}</p>
+          <h3 class="name">{{ item.name }}</h3>
+        </div>
+      </div>
+    </div>
+</div>
