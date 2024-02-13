@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarouselItem } from '../Carrousel/Carrousel.component';
+import { GamesService } from 'src/services/games.service';
 
 @Component({
   selector: 'app-Initial',
@@ -6,10 +8,82 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./Initial.component.scss']
 })
 export class InitialComponent implements OnInit {
-
-  constructor() { }
+  ListaMejoresJuegos: CarouselItem[] = [];
+  ListShooters: CarouselItem[] = [];
+  listaItems: CarouselItem[] = []
+  ListProximosLanzamientos: CarouselItem[] = []
+  ListWorstGames: CarouselItem[] = []
+  ListSports: CarouselItem[] = []
+  ListMostPlayers: CarouselItem[] = []
+  constructor(
+    private serviceGames: GamesService
+  ) { }
 
   ngOnInit() {
+    this.TraerMejoresJuegos();
+    this.GetTopShooters();
+    this.getProximosLanzamientos();
+    this.getTopSports();
+    this.getPeoresJuegos();
   }
+
+  TraerMejoresJuegos(){
+    this.serviceGames.ObtenerTopGames().subscribe(
+      (games) =>{
+        this.ListaMejoresJuegos = games;
+        console.log('aqui estan los juegos alv: ', games);
+      },
+      (error) =>{
+        console.error("Error al obtener los mejores juegos:", error);
+      }
+      );
+    }
+
+    GetTopShooters(){
+      this.serviceGames.ObtenerTopShooters().subscribe(
+        (games) =>{
+          this.ListShooters = games;
+          console.log('aqui estan los shooters: ', games);
+        },
+        (error) =>{
+          console.error("Error al obtener los mejores juegos:", error);
+        }
+        );
+    }
+
+    getProximosLanzamientos(){
+      
+      this.serviceGames.ObtenerProximosLanzamientos().subscribe(
+        (games) =>{
+          this.ListProximosLanzamientos = games;
+          console.log('aqui estan los proximos lanzamientos: ', games);
+        },
+
+        );
+    }
+
+    getTopSports(){
+      this.serviceGames.ObtenerTopSports().subscribe(
+        (games) =>{
+          this.ListSports = games;
+          console.log('aqui estan los proximos lanzamientos: ', games);
+        },
+        (error) =>{
+          console.error("Error al obtener los mejores juegos:", error);
+        }
+        );
+    }
+
+    getPeoresJuegos(){
+      this.serviceGames.ObtenerPeoresJuegos().subscribe(
+        (games) =>{
+          this.ListWorstGames = games;
+          console.log('aqui estan los peores juegos: ', games);
+        },
+        (error) =>{
+          console.error("Error al obtener los peores juegos:", error);
+        }
+        );
+    }
 
 }
