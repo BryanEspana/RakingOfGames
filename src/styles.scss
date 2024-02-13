@@ -9,6 +9,7 @@
 }
 html{
   background-color: var(--color-primary) !important;
+  color: white;
 }
 p, label, a, li, ul{
   font-family: "Roboto", sans-serif;
@@ -167,4 +168,15 @@ h1, h2, h3, h4, h5, h6{
     border: 1px solid var(--color-primary);
     //animacion
     transition: 0.2s;
+}
+
+
+.icons{
+  fill: white;
+  padding: 25px;
+  width: 60px !important;
+}
+.between{
+  justify-content: space-between;
+  padding: 10px 15%;
 }
