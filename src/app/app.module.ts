@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { InitialComponent } from './pages/Initial/Initial.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { CarrouselComponent } from './pages/Carrousel/Carrousel.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CarrouselComponent } from './pages/Carrousel/Carrousel.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

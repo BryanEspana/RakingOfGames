@@ -2,10 +2,12 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 
 export interface CarouselItem {
-  title: string;
-  category: string;
+  name: string;
+  genre: string; // Cambiado a 'genre' para reflejar que solo se mostrará un género
   image: string;
+  rating: number;
 }
+
 
 @Component({
   selector: 'app-Carrousel',
