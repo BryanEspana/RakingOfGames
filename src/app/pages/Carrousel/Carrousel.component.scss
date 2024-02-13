@@ -1,0 +1,65 @@
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 40px 15%;
+  }
+  
+  .carousel-content {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+  }
+  
+  .carousel-item {
+    flex: 0 0 auto;
+    margin-right: 15px;
+    /* Tus estilos existentes para los ítems */
+  }
+  
+  .arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    /* Personaliza tus botones/flechas según necesites */
+  }
+  
+  .left-arrow {
+    left: 0;
+  }
+  
+  .right-arrow {
+    right: 0;
+  }
+  
+  .iconChevron{
+    cursor: pointer;
+    width: 30px !important;
+  }
+  .iconChevron:hover{
+    fill: var(--color-claro);
+
+
+  }
+  .imgGame{
+    width: 270px;
+    border-radius: 20px;
+  }
+  .carousel-item{
+    background-color: var(--color-bordes);
+    border-radius: 20px;
+  }
+  .textGame{
+    padding: 10px 20px;
+  }
+  .category{
+    color: #808080;
+    font-weight: 400;
+    padding-bottom: 10px;
+  }
+  .name{
+    font-weight: 600;
+    font-size: 20px !important;
+  }

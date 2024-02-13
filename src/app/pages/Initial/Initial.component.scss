@@ -80,7 +80,14 @@
 }
 .divDeItems{
     position: relative;
-    bottom: 138px;
+    bottom: 100px;
+    padding: 10px 15%;
+    justify-content: space-around;
+}
+.minitext{
+    padding: 20px 0;
+}
+.divDeItems2{
     padding: 10px 15%;
     justify-content: space-around;
 }
