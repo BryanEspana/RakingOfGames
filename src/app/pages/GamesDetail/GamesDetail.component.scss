@@ -37,7 +37,7 @@
   }
   .date{
     font-size: 3    0px;
-    padding: 1rem 0rem;
+    padding-top: 1rem;
     color: var(--color-claro);
   }
 .rating{
@@ -72,4 +72,43 @@
 }
 h2{
     font-size: 40px;
+}
+.ComentaryPage{
+  background-color: var(--color-bordes);
+  padding: 5% 15%;
+}
+.comentario{
+  padding: 3%;
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+  border-radius: 20px;
+  background-color: var(--color-black);
+  margin: 3% 0%;
+  justify-content: space-between;
+}
+.imgUser{
+  width: 35px;
+  object-fit: cover;
+  fill: white;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.comentarioUser{
+  display: flex;
+  flex-direction: row;
+}
+.imgFOndo{
+  margin-right: 1rem;
+  background: var(--color-bordes);
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
+p{
+  font-size: 18px;
 }
