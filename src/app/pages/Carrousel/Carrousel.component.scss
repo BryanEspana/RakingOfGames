@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 40px 15%;
+    padding: 40px 10%;
   }
   
   .carousel-content {
@@ -47,7 +47,7 @@
   }
   .imgGame{
     width: 270px; /* Fija el ancho de la imagen */
-    height: 270px; /* Fija el alto de la imagen */
+    height: 180px; /* Fija el alto de la imagen */
     object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */
     display: block; /* Elimina cualquier espacio extra alrededor de la imagen */
     margin: 0 auto; 
