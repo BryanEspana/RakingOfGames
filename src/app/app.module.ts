@@ -8,6 +8,7 @@ import { HeaderComponent } from './pages/header/header.component';
 import { CarrouselComponent } from './pages/Carrousel/Carrousel.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TotalGamesComponent } from './pages/TotalGames/TotalGames.component';
+import { GamesDetailComponent } from './pages/GamesDetail/GamesDetail.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TotalGamesComponent } from './pages/TotalGames/TotalGames.component';
     HeaderComponent,
     CarrouselComponent,
     TotalGamesComponent,
+    GamesDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -126,4 +126,23 @@ constructor(
       );
     }
 
+    //getData de game
+    public getGameDetails(gameId: string) {
+      const url = `${API_URL}/game/${gameId}`;
+      return this.http.get<any>(url, {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      }).pipe(
+        map(response => ({
+          name: response.name,
+          genre: response.genres.length > 0 ? response.genres[0].name : 'Unknown', // Asume el primer género si existe, de lo contrario 'Unknown'
+          image: response.background_image,
+          rating: response.rating
+        })),
+        catchError(err => {
+          console.error("ERROR al obtener los detalles del juego:", err);
+          return throwError(() => err);
+        })
+      );
+    }
+
 }
