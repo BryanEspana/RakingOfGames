@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export interface CarouselItem {
  //_id opcional
-  _id?: string;
+  _id: string;
   name: string;
   genre: string; // Cambiado a 'genre' para reflejar que solo se mostrará un género
   image: string;
@@ -38,8 +38,8 @@ export class CarrouselComponent implements OnInit {
   }
 
   GoToGame(gameId: string) {
-    // Aquí puedes hacer lo que quieras con el ID del juego, como navegar a una URL que incluya el ID
-    this.route.navigate(['/game', gameId]); // Suponiendo que tienes una ruta configurada para /games/:id
+    console.log("Navigating to game with ID:", gameId); // Añade esto para debuggear
+    this.route.navigate(['/games', gameId]);
   }
   
 }

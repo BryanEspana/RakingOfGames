@@ -1,4 +1,75 @@
 .PageTotalGames{
-    margin-top: 6rem;
-    padding: 10px 15%;
+    margin-top: 4.5rem;
+
+}
+.CardComplete{
+    width: 100%;
+    height: 20vh;
+    border-bottom-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    //backgorund image assets
+    background-image: url('../../../assets/Games/fondoblue.png');
+    background-size: cover;
+    background-position: center;    
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.text{
+    font-size: 50px;
+}
+.imgGame{
+    width: 450px; /* Fija el ancho de la imagen */
+    height: 450px; /* Fija el alto de la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */
+    display: block; /* Elimina cualquier espacio extra alrededor de la imagen */
+    margin: 0 auto; 
+    border-radius: 20px;
+  }
+  .padComplete{
+    padding: 5% 15%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .description{
+    padding: 3%;
+  }
+  .date{
+    font-size: 3    0px;
+    padding: 1rem 0rem;
+    color: var(--color-claro);
+  }
+.rating{
+    font-size: 20px;
+    padding-top: 25px;
+    padding-left: 10px;
+    color: var(--color-claro);
+}
+  .star-rating {
+    unicode-bidi: bidi-override;
+    color: #c5c5c5; /* Color de las estrellas no llenas */
+    font-size: 50px;
+    display: flex;
+    flex-direction: row;
+   
+  }
+  
+  .star-rating .filled {
+    color: #ffac33; /* Color de las estrellas llenas */
+  }
+  
+  .genres-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.genre{
+    background-color: var(--color-bordes);
+    padding: 2px 5px;
+    margin: 5px;
+    border-radius: 20px;
+}
+h2{
+    font-size: 40px;
 }

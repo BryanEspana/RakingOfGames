@@ -9,9 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./GamesDetail.component.scss']
 })
 export class GamesDetailComponent implements OnInit {
-  gameId?: string;
+  gameId: string | null = null;
   gameDetails?: any;
-
+  stars: number[] = [1, 2, 3, 4, 5]; // Representa un arreglo de 5 estrellas
+  Divinfo: any;
   constructor(
     private GamesService: GamesService,
     private route: ActivatedRoute,
@@ -19,27 +20,31 @@ export class GamesDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.gameId = params['id'];
-      this.getGameDetails();
-    });
+    this.gameId = this.route.snapshot.paramMap.get('id');
+    console.log("GameId: " + this.gameId);
+    if (this.gameId) {
+      this.getGameDetails(this.gameId);
+      console.log("GameDetails: " + this.gameDetails);
+    }
+    console.log("Si trae la data", JSON.stringify(this.gameDetails));
   }
 
   search(){
     console.log("AQUI ESTOY")
   }
-  getGameDetails() {
-    if (this.gameId) {
-      this.GamesService.getGameDetails(this.gameId).subscribe(
-        (data) => {
-          this.gameDetails = data;
-        },
-        (error) => {
-          console.error('Error fetching game details:', error);
-        }
-      );
-    }
+  getGameDetails(gameId: string) {
+    this.GamesService.getGameDetails(gameId).subscribe(
+      (gameDetails) => {
+        this.gameDetails = gameDetails;
+        console.log("GameDetails:", this.gameDetails); // Ahora dentro del subscribe
+      },
+      (error) => {
+        console.error('Error al obtener los detalles del juego:', error);
+      }
+    );
   }
+  
+  
 
 
 }

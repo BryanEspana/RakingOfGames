@@ -1,6 +1,36 @@
 <div  class="PageTotalGames">
 
-  <h1>Listado de juegos</h1>
+  <div class="CardComplete">
+    <div class="displayrow ">
+      <div class="info">
+        <h1 class="text">{{gameDetails.name}}</h1>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+  <div class="displayrow padComplete">
+    <div>
+      <img src="{{gameDetails.background_image}}" class="imgGame">
+    </div>
+    <div class="description">
+      <h2> {{gameDetails.name}}</h2>
+      <p class="date">Fecha de lanzamiento: {{gameDetails.released}}</p>
+      <div class="star-rating">
+        <span *ngFor="let star of stars" [class.filled]="star <= gameDetails.rating">&#9733;</span>
+        <span class="rating">({{gameDetails.rating}})</span>
+      </div>
 
+      <div class="genres-container">
+        <div *ngFor="let genre of gameDetails.genres" class="genre">
+          <div class="genre">
+            {{ genre.name }}
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
 
 </div>
