@@ -3,6 +3,15 @@ import { CarouselItem } from '../Carrousel/Carrousel.component';
 import { GamesService } from 'src/services/games.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
+// comentario.model.ts
+export interface Comentario {
+  titulo: string;
+  contenido: string;
+  rating: number;
+  // Agrega cualquier otro campo que necesites
+}
+
 @Component({
   selector: 'app-TotalGames',
   templateUrl: './GamesDetail.component.html',
@@ -17,6 +26,17 @@ export class GamesDetailComponent implements OnInit {
   stars: number[] = [1, 2, 3, 4, 5]; // Representa un arreglo de 5 estrellas
   Divinfo: any;
   
+  comentarios: Comentario[] = [
+    // Aquí irían los datos de ejemplo o los datos recuperados de una API
+    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
+    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
+    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
+    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
+    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
+
+
+    // Añade más comentarios como necesites
+  ];
   constructor(
     private GamesService: GamesService,
     private route: ActivatedRoute,

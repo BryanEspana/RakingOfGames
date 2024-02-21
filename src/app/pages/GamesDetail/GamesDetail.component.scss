@@ -1,10 +1,10 @@
+
 .PageTotalGames{
     margin-top: 4.5rem;
-
+    height: 100vh;
 }
 .CardComplete{
     width: 100%;
-    height: 20vh;
     border-bottom-left-radius: 80px;
     border-bottom-right-radius: 80px;
     //backgorund image assets
@@ -73,31 +73,28 @@
 h2{
     font-size: 40px;
 }
-.ComentaryPage{
-  background-color: var(--color-bordes);
-  padding: 5% 15%;
-}
+
 .comentario{
-  padding: 3%;
-  display: flex;
-  width: 50%;
-  flex-direction: row;
-  border-radius: 20px;
-  background-color: var(--color-black);
-  margin: 3% 0%;
-  justify-content: space-between;
+  background: var(--color-black);
+  border-radius: 15px;
+  padding: 15px;
+  width: 280px;
+  margin: 1rem;
 }
 .imgUser{
-  width: 35px;
+  background-color: white;
+  width: 42px;
   object-fit: cover;
   fill: white;
   display: block;
+  padding: 7px;
   margin: 0 auto;
   border-radius: 50%;
 }
 .comentarioUser{
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
 }
 .imgFOndo{
   margin-right: 1rem;
@@ -111,4 +108,13 @@ h2{
 }
 p{
   font-size: 18px;
+}
+.Contenido{
+  font-weight: 300;
+}
+.tituloDiv{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-left: 1rem;
 }

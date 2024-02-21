@@ -12,6 +12,7 @@ html{
   background-color: var(--color-primary) !important;
   color: white;
 }
+
 p, label, a, li, ul{
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -137,6 +138,9 @@ h1, h2, h3, h4, h5, h6{
     -moz-osx-font-smoothing: grayscale;
     overflow-y: auto;
     height: 100vh;
+  }
+  body{
+    overflow: visible !important;
   }
 
   label{
