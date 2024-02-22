@@ -212,4 +212,16 @@ export class GamesDetailComponent implements OnInit {
         rating: 0
       };
     }
+
+    DeleteComent(commentId: string){
+      this.CommentService.deleteComment(commentId).subscribe(
+        response => {
+          console.log('Comentario eliminado', response);
+          this.getComments();
+        },
+        error => {
+          console.error('Error al eliminar el comentario:', error);
+        }
+      );
+    }
 }

@@ -23,3 +23,5 @@ export const GET_COMMENTS = '/games/get-comments';
 export const ADD_COMMENTS = '/games/add-comment';
 //UPDATE COMMENT
 export const UPDATE_COMMENT = '/games/update-comments';
+//DELETE COMMENT
+export const DELETE_COMMENT = '/games/delete-comments';
