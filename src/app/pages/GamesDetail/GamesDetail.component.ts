@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CarouselItem } from '../Carrousel/Carrousel.component';
 import { GamesService } from 'src/services/games.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentsService } from 'src/services/Comments/Comments.service';
+import { v4 as uuidv4 } from 'uuid';
 
 
 // comentario.model.ts
 export interface Comentario {
+  _id: string;
   gameId?: string;
   title: string;
   description: string;
@@ -30,6 +32,7 @@ export class GamesDetailComponent implements OnInit {
   stars: number[] = [1, 2, 3, 4, 5]; // Representa un arreglo de 5 estrellas
   Divinfo: any;
   comentario:  Comentario ={
+    _id:'',
     title: '',
     description: '',
     rating: 0
@@ -42,6 +45,7 @@ export class GamesDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private CommentService: CommentsService,
+    private cdRef: ChangeDetectorRef
     
   ) { }
 
@@ -103,7 +107,6 @@ export class GamesDetailComponent implements OnInit {
 
   getComments(){
     this.gameId = this.route.snapshot.paramMap.get('id')!;
-    console.log("Entra el gameid?: ", this.gameId);
     this.CommentService.getComments(this.gameId).subscribe(
       (comments) => {
         this.comentarios = comments;
@@ -118,7 +121,6 @@ export class GamesDetailComponent implements OnInit {
   addComments(){
     this.gameId = this.route.snapshot.paramMap.get('id')!;
     this.comentario.rating = this.ratingGame;
-    console.log("Comentario a enviar: ", this.comentario);
     this.CommentService.addComment(this.comentario).subscribe(
       (comment) => {
         console.log('Comentario enviado:', comment);
@@ -130,15 +132,64 @@ export class GamesDetailComponent implements OnInit {
     );
   }
 
+
+  editComment(comentarioSeleccionado: any) {
+    // Aquí puedes establecer el comentario a ser editado
+    // Por ejemplo, podrías abrir un modal con el formulario de edición precargado con los datos del comentario
+    this.comentario = {
+      _id: comentarioSeleccionado._id, // Asegúrate de que usas el campo correcto para el ID
+      title: comentarioSeleccionado.title,
+      description: comentarioSeleccionado.description,
+      rating: comentarioSeleccionado.rating
+    };  
+  
+    this.comentario = { ...comentarioSeleccionado };
+    this.cdRef.detectChanges(); // Forzar la detección de cambios
+  }
+  
   submitComment(){
+    if (this.comentario._id) {
+      // Lógica para actualizar el comentario existente
+      this.updateComment(this.comentario);
+    } else {
+      // Lógica para crear un nuevo comentario
+      this.createComment(this.comentario);
+    }
+    
+   }
+   updateComment(comentario: any) {
+    // Llamada al servicio para actualizar un comentario
+    // Asegúrate de implementar la lógica de actualización en tu backend y en el servicio
+    this.CommentService.updateComment(comentario).subscribe(
+      response => {
+        // Manejo de la respuesta
+        console.log('Comentario actualizado', response);
+        this.getComments();
+
+        this.resetForm();
+        
+      },
+      error => {
+        console.error('Error al actualizar el comentario:', error);
+      }
+    );
+  }
+   createComment(comentario: any) {
     if (this.comentario.title && this.comentario.description && this.comentario.rating) {
       this.gameId = this.route.snapshot.paramMap.get('id')!;
+      const comentarioId = uuidv4();
+      this.comentario._id = comentarioId;
+      if (!localStorage.getItem('sessionID')) {
+        localStorage.setItem('sessionID', uuidv4());
+      }
       this.comentario.gameId = this.gameId;
       this.CommentService.addComment(this.comentario).subscribe(
         response => {
           console.log('Comentario enviado con éxito', response);
+          localStorage.setItem(`comment_${response._id}`, localStorage.getItem('sessionID')!);
           //Recargar pagina
           this.getComments();
+
           
           // Aquí podrías limpiar el formulario o redirigir al usuario, etc.
           this.resetForm();
@@ -155,6 +206,7 @@ export class GamesDetailComponent implements OnInit {
 
     resetForm() {
       this.comentario = {
+        _id: '',
         title: '',
         description: '',
         rating: 0

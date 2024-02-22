@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ADD_COMMENTS, GET_COMMENTS } from 'src/app/config/backEndRoutes';
+import { ADD_COMMENTS, GET_COMMENTS, UPDATE_COMMENT } from 'src/app/config/backEndRoutes';
 import { API_URL } from 'src/app/config/config';
 
 @Injectable({
@@ -23,6 +23,12 @@ constructor(
     public addComment(comment: any): Observable<any> {
       const url = `${API_URL}${ADD_COMMENTS}`;
       return this.http.post<any>(url, comment);
+    }
+
+    //Update Comment
+    public updateComment(comment: any): Observable<any> {
+      const url = `${API_URL}${UPDATE_COMMENT}`;
+      return this.http.put<any>(url, comment);
     }
 
 

@@ -61,6 +61,11 @@
           <div class="tituloDiv">
             <p>{{ comentario.title }}</p>
           </div> 
+          <div>
+            <img src="../../../assets/Games/edit.svg" class="editIcon"
+        
+            (click)="editComment(comentario)">
+          </div>
         </div>
         <div>
           <p-rating [ngModel]="comentario.rating" [readonly]="true" [cancel]="false"></p-rating>        
@@ -90,11 +95,13 @@
       
         <div class="field">
           <label for="rating" style="margin-bottom: 10px;">Rating:</label>
-            <p-rating [(ngModel)]="comentario.rating" class="custom-rating" name="rating" [cancel]="false"></p-rating>
+          <p-rating [(ngModel)]="comentario.rating" class="custom-rating" name="rating" [cancel]="false"></p-rating>
         </div>
       
-        <button type="submit" pButton class="btnBlue"  icon="pi pi-check">Enviar Comentario</button>
-      </form>
+        <button type="submit" pButton class="btnBlue" icon="pi pi-check">
+          {{ comentario._id ? 'Actualizar Comentario' : 'Enviar Comentario' }}
+        </button>
+              </form>
       
   </div>
   </div>  

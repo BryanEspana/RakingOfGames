@@ -92,6 +92,15 @@ h2{
   margin: 0 auto;
   border-radius: 50%;
 }
+.editIcon{
+  width: 30px;
+  object-fit: cover;
+  color: white !important;
+  display: block;
+  padding: 7px;
+  margin: 0 auto;
+  cursor: pointer;
+}
 .comentarioUser{
   display: flex;
   flex-direction: row;

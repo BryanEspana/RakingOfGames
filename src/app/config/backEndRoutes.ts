@@ -21,3 +21,5 @@ export const MOST_PLAYED_URL = '/most-played-games';
 export const GET_COMMENTS = '/games/get-comments';
 //aGREGAR COMENTARIOS
 export const ADD_COMMENTS = '/games/add-comment';
+//UPDATE COMMENT
+export const UPDATE_COMMENT = '/games/update-comments';
