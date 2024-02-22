@@ -15,3 +15,9 @@ export const TOP_SPORTS_URL = '/top-sports-games';
 export const WORST_GAMES_URL = '/worst-games';
 //Juegos mas jugados
 export const MOST_PLAYED_URL = '/most-played-games';
+
+
+//cOMENTARIOS
+export const GET_COMMENTS = '/games/get-comments';
+//aGREGAR COMENTARIOS
+export const ADD_COMMENTS = '/games/add-comment';

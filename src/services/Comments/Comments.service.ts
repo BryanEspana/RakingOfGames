@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ADD_COMMENTS, GET_COMMENTS } from 'src/app/config/backEndRoutes';
 import { API_URL } from 'src/app/config/config';
 
 @Injectable({
@@ -14,7 +15,16 @@ constructor(
 
     //Get comments for games
     public getComments(gameId: string): Observable<any[]> {
-      const url = `${API_URL}/games/${gameId}/comments`;
-      return this.http.get<any[]>(url);
+      const url = `${API_URL}${GET_COMMENTS}`;
+      return this.http.post<any[]>(url, { gameId: gameId });
     }
+
+    //Add Comments
+    public addComment(comment: any): Observable<any> {
+      const url = `${API_URL}${ADD_COMMENTS}`;
+      return this.http.post<any>(url, comment);
+    }
+
+
+
 }

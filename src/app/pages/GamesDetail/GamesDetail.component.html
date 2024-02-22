@@ -59,7 +59,7 @@
             <img src="../../../assets/Games/userSecret.svg" class="imgUser">
           </div> 
           <div class="tituloDiv">
-            <p>{{ comentario.titulo }}</p>
+            <p>{{ comentario.title }}</p>
           </div> 
         </div>
         <div>
@@ -67,13 +67,37 @@
           <span class="rating">({{comentario.rating}})</span>
         </div>
         <div>
-          <label class="Contenido">{{ comentario.contenido }}</label>
+          <label class="Contenido">{{ comentario.description }}</label>
           
         </div>
       </div>
       
     </div>
   </div>
+  <div class="ComentaryPage ColorPage">
+    <h3 class="padding" style="margin-bottom: 10px;">Deja tu comentario:</h3>
+    <div class="divComentary">
+      <form (ngSubmit)="submitComment()" style="width: 100%;">
+        <div class="field">
+          <label for="titulo" style="margin-bottom: 10px;">Título:</label>
+          <input type="text" id="titulo" class="inputs" [(ngModel)]="comentario.title" name="titulo" required>
+        </div>
+      
+        <div class="field">
+          <label for="descripcion" style="margin-bottom: 10px;">Descripción:</label>
+          <textarea id="descripcion" class="TextArea" [(ngModel)]="comentario.description" name="descripcion" rows="4" required></textarea>
+        </div>
+      
+        <div class="field">
+          <label for="rating" style="margin-bottom: 10px;">Rating:</label>
+            <p-rating [(ngModel)]="comentario.rating" class="custom-rating" name="rating" [cancel]="false"></p-rating>
+        </div>
+      
+        <button type="submit" pButton class="btnBlue"  icon="pi pi-check">Enviar Comentario</button>
+      </form>
+      
+  </div>
+  </div>  
     
   <div class="displayrow between cardDeCards">
     <h1>Proximos lanzamientos</h1>
