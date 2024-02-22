@@ -20,7 +20,9 @@ export interface Comentario {
 export class GamesDetailComponent implements OnInit {
   shortScreenshots: any[] = [];
   responsiveOptions: any[] | undefined;
-  ratingGame: number = 5; 
+  ratingGame: number = 5;
+  ListProximosLanzamientos: CarouselItem[] = []
+ 
   gameId: string | null = null;
   gameDetails: any = {};
   stars: number[] = [1, 2, 3, 4, 5]; // Representa un arreglo de 5 estrellas
@@ -28,11 +30,13 @@ export class GamesDetailComponent implements OnInit {
   
   comentarios: Comentario[] = [
     // Aquí irían los datos de ejemplo o los datos recuperados de una API
-    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
-    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
-    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
-    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
-    { titulo: 'Tu mama es hombre', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy por la gran puta ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
+    { titulo: 'Titulo de videojuego', contenido: 'Este juego es una maldita joya, es de los mejores juegos que he jugado en mi vida, este juego me dio la vida, este juego me hizo ser la persona que soy ', rating: 5 },
 
 
     // Añade más comentarios como necesites
@@ -41,9 +45,12 @@ export class GamesDetailComponent implements OnInit {
     private GamesService: GamesService,
     private route: ActivatedRoute,
     private router: Router
+    
   ) { }
 
   ngOnInit() {
+    this.getProximosLanzamientos();
+
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
@@ -84,7 +91,16 @@ export class GamesDetailComponent implements OnInit {
     );
   }
   
-  
+  getProximosLanzamientos(){
+      
+    this.GamesService.ObtenerProximosLanzamientos().subscribe(
+      (games) =>{
+        this.ListProximosLanzamientos = games;
+        console.log('aqui estan los proximos lanzamientos: ', games);
+      },
+
+      );
+  }
 
 
 }

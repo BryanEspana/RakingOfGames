@@ -49,27 +49,35 @@
   </div>
   <!--COmentarios-->
   <div class="ComentaryPage">
-    <h1>Comentarios:</h1>
-    <div *ngFor="let comentario of comentarios" class="comentario">
-      <div class="comentarioUser">
-        <div class="imgFondo">
-          <!-- Icono de usuario, puedes mantenerlo estático o dinámico según prefieras -->
-          <img src="../../../assets/Games/userSecret.svg" class="imgUser">
-        </div> 
-        <div class="tituloDiv">
-          <p>{{ comentario.titulo }}</p>
-        </div> 
-      </div>
-      <div>
-        <p-rating [ngModel]="comentario.rating" [readonly]="true" [cancel]="false"></p-rating>        
-        <span class="rating">({{comentario.rating}})</span>
-      </div>
-      <div>
-        <label class="Contenido">{{ comentario.contenido }}</label>
 
+    <h1 class="padding">Comentarios:</h1>
+    <div class="divComentary" >
+      <div *ngFor="let comentario of comentarios" class="comentario">
+        <div class="comentarioUser">
+          <div class="imgFondo">
+            <!-- Icono de usuario, puedes mantenerlo estático o dinámico según prefieras -->
+            <img src="../../../assets/Games/userSecret.svg" class="imgUser">
+          </div> 
+          <div class="tituloDiv">
+            <p>{{ comentario.titulo }}</p>
+          </div> 
+        </div>
+        <div>
+          <p-rating [ngModel]="comentario.rating" [readonly]="true" [cancel]="false"></p-rating>        
+          <span class="rating">({{comentario.rating}})</span>
+        </div>
+        <div>
+          <label class="Contenido">{{ comentario.contenido }}</label>
+          
+        </div>
       </div>
+      
     </div>
-    
   </div>
+    
+  <div class="displayrow between cardDeCards">
+    <h1>Proximos lanzamientos</h1>
+  </div>
+  <app-Carrousel [items]="ListProximosLanzamientos"></app-Carrousel>
 
 </div>
