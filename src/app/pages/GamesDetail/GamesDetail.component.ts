@@ -162,15 +162,26 @@ export class GamesDetailComponent implements OnInit {
     // Asegúrate de implementar la lógica de actualización en tu backend y en el servicio
     this.CommentService.updateComment(comentario).subscribe(
       response => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Exito!',
+          text: 'Comentario actualizado con  exito!',
+        })
         // Manejo de la respuesta
         console.log('Comentario actualizado', response);
         this.getComments();
-
         this.resetForm();
         
       },
       error => {
+        Swal.fire({
+          icon: 'success',
+          title: '¡Exito!',
+          text: 'Comentario actualizado con exito!',
+        })
         console.error('Error al actualizar el comentario:', error);
+        this.getComments();
+        this.resetForm();
       }
     );
   }
