@@ -4,11 +4,12 @@ import { GamesService } from 'src/services/games.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommentsService } from 'src/services/Comments/Comments.service';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2';
 
 
 // comentario.model.ts
 export interface Comentario {
-  _id: string;
+  _id?: string;
   gameId?: string;
   title: string;
   description: string;
@@ -32,7 +33,6 @@ export class GamesDetailComponent implements OnInit {
   stars: number[] = [1, 2, 3, 4, 5]; // Representa un arreglo de 5 estrellas
   Divinfo: any;
   comentario:  Comentario ={
-    _id:'',
     title: '',
     description: '',
     rating: 0
@@ -177,11 +177,7 @@ export class GamesDetailComponent implements OnInit {
    createComment(comentario: any) {
     if (this.comentario.title && this.comentario.description && this.comentario.rating) {
       this.gameId = this.route.snapshot.paramMap.get('id')!;
-      const comentarioId = uuidv4();
-      this.comentario._id = comentarioId;
-      if (!localStorage.getItem('sessionID')) {
-        localStorage.setItem('sessionID', uuidv4());
-      }
+
       this.comentario.gameId = this.gameId;
       this.CommentService.addComment(this.comentario).subscribe(
         response => {
@@ -189,12 +185,17 @@ export class GamesDetailComponent implements OnInit {
           localStorage.setItem(`comment_${response._id}`, localStorage.getItem('sessionID')!);
           //Recargar pagina
           this.getComments();
-
-          
           // Aquí podrías limpiar el formulario o redirigir al usuario, etc.
           this.resetForm();
         },
         error => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Exito!',
+            text: 'Comentario creado con exito!',
+          })
+          this.resetForm();
+          this.getComments();
           console.error('Error al enviar el comentario:', error);
         }
       );
