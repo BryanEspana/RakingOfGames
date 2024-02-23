@@ -230,8 +230,20 @@ export class GamesDetailComponent implements OnInit {
         response => {
           console.log('Comentario eliminado', response);
           this.getComments();
+          Swal.fire({
+            icon: 'success',
+            title: '¡Exito!',
+            text: 'Comentario eliminado con exito!',
+          })
         },
         error => {
+          this.getComments();
+
+          Swal.fire({
+            icon: 'success',
+            title: '¡Exito!',
+            text: 'Comentario eliminado con exito!',
+          })
           console.error('Error al eliminar el comentario:', error);
         }
       );

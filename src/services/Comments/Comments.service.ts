@@ -33,8 +33,8 @@ constructor(
 
     //Delete comment
     public deleteComment(commentId: string): Observable<any> {
-      const url = `${API_URL}${DELETE_COMMENT}`;
-      return this.http.delete<any>(url, { params: { _id: commentId } });
+      const url = `${API_URL}${DELETE_COMMENT}${commentId}`;
+      return this.http.delete<any>(url);
     }
 
 }
