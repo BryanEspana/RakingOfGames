@@ -27,7 +27,7 @@
       <input type="text" [(ngModel)]="filtroBusqueda"  (input)="filtrarJuegos()" class="inputs" placeholder="Buscar">
     </div>
     <div class="divJuegos">
-      <div *ngFor="let item of itemsFiltrados" class="carousel-item" (click)="GoToGame(item._id || '')">
+      <div *ngFor="let item of itemsFiltrados | paginate: { itemsPerPage: 20, currentPage: p }" class="carousel-item" (click)="GoToGame(item._id || '')">
         <div class="imgDiv">
           <img src="{{ item.image }}" alt="{{ item.name }}" class="imgGame">
           <p class="Metacritic">{{item.rating}}/5</p>
@@ -38,5 +38,15 @@
         </div>
       </div>
     </div>
+    <pagination-controls class="center" (pageChange)="p = $event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+    firstLabel="Primero"
+    lastLabel="Último"
+    screenReaderPaginationLabel="Paginación"
+    screenReaderPageLabel="página"
+    screenReaderCurrentLabel="Estás en la página">
+</pagination-controls>
+
   </div>
 </div>

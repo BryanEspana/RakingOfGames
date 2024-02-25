@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { PlataformasComponent } from './pages/plataformas/plataformas.component';
 import { NgxLoadingModule } from "ngx-loading";
 import { ContactsComponent } from './pages/contacts/contacts.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
     RatingModule,
     FormsModule,
     NgxLoadingModule.forRoot({}),
+    NgxPaginationModule
     
   ],
   providers: [],

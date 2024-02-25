@@ -32,6 +32,7 @@ export interface StoreID {
 
 export class PlataformasComponent implements OnInit {
   filtroBusqueda: string = '';
+  p: number = 1;
   itemsFiltrados: any[] = []; 
   items: CarouselItem[] = [];
   storeId: string = '';

@@ -326,3 +326,41 @@ padding-right: 15px;
 background: var(--color-primary);
 border-radius: 19px;
 }
+
+
+::ng-deep pagination-controls .ngx-pagination .current {
+  background-color: #007bff;
+  color: white !important;
+}
+
+::ng-deep pagination-controls .ngx-pagination a {
+  color: white !important;
+}
+
+.ngx-pagination {
+  padding-left: 0px !important;
+  color: white !important;
+}
+
+.ngx-pagination .current,
+.btn-info {
+  background: var(--color-bordes) !important;
+  border: transparent !important;
+  border-radius: 20px !important;
+  color: white;
+}
+.ngx-pagination a{
+  color: white !important;
+}
+.ngx-pagination a{
+  color: white !important;
+}
+
+.ngx-pagination .current:hover {
+  background:  var(--color-bordes) !important;
+  border-radius: 20px !important; 
+  border: transparent !important;
+}
+.pagination ::ng-deep .ngx-pagination .current {
+  background: red;
+}
