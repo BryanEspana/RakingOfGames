@@ -1,10 +1,23 @@
 <div class="PageTotalGames">
-  <div class="displayrow divDeItems3">
-    <div class="item" *ngFor="let store of stores">
+  <div class="displayrow divDeItems3" >
+    <div class="item" *ngFor="let store of stores" (click)="GoInfoStore(store.id.toString(), store.slug)">
       <div class="circlebtn">
         <img src={{store.image}} class="icons">
       </div>
       <label class="labelName"> {{store.name}}</label>
     </div>
-</div>
+  </div>
+
+  <div class="GamesDiv">
+    <div *ngFor="let item of items" class="carousel-item" (click)="GoToGame(item._id || '')">
+      <div class="imgDiv">
+        <img src="{{ item.image }}" alt="{{ item.name }}" class="imgGame">
+        <p class="Metacritic">{{item.rating}}/5</p>
+      </div>
+      <div class="textGame">
+        <p class="category">{{ item.genre }}</p>
+        <h3 class="name">{{ item.name }}</h3>
+      </div>
+    </div>
+  </div>
 </div>

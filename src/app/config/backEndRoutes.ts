@@ -29,3 +29,7 @@ export const DELETE_COMMENT = '/games/delete-comments';
 
 //Stores
 export const GET_ALL_STORES = '/All-stores'
+//Store for ID
+export const GET_STORE = '/stores';
+//Games for store
+export const GET_ALL_GAMES_BY_STORES = '/stores/games';
