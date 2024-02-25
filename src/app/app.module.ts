@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { GalleriaModule } from 'primeng/galleria';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { PlataformasComponent } from './pages/plataformas/plataformas.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     CarrouselComponent,
     TotalGamesComponent,
-    GamesDetailComponent
+    GamesDetailComponent,
+    PlataformasComponent
   ],
   imports: [
     BrowserModule,

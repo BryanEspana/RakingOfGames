@@ -25,6 +25,7 @@
     align-items: center;
     padding: 10% 15%;
 }
+
 .info{
     color: white;
     padding-right: 20rem;
@@ -48,46 +49,4 @@
     border-radius: 25px;
     text-align: center;
 }
-.circlebtn{
-    width: 90px;
-    height: 90px;
-    display: inline-block;
-    text-align: center;
-    line-height: 90px;
-    background-color: var(--color-bordes);
-    border-radius: 50%;
-    transition: all .3s;
-    align-items: center;
-    display: flex;
-    justify-content: center;
 
-}
-.item{
-    padding: 35px;
-    width: 192px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 25px;
-    background-color: var(--color-secondary);
-    text-align: center;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.toptext{
-    margin-top: 1rem;
-    color: white;
-}
-.divDeItems{
-    position: relative;
-    bottom: 100px;
-    padding: 10px 15%;
-    justify-content: space-around;
-}
-.minitext{
-    padding: 20px 0;
-}
-.divDeItems2{
-    padding: 10px 15%;
-    justify-content: space-around;
-}

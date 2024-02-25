@@ -30,4 +30,7 @@ export class HeaderComponent implements OnInit {
   GoHome(){
     this.router.navigate(['/home']);
   }
+  GoToPlatforms(){
+    this.router.navigate(['/platforms']);
+  }
 }

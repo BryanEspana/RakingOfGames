@@ -25,3 +25,7 @@ export const ADD_COMMENTS = '/games/add-comment';
 export const UPDATE_COMMENT = '/games/update-comments';
 //DELETE COMMENT
 export const DELETE_COMMENT = '/games/delete-comments';
+
+
+//Stores
+export const GET_ALL_STORES = '/All-stores'

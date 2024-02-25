@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselItem } from '../Carrousel/Carrousel.component';
 import { GamesService } from 'src/services/games.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-Initial',
@@ -16,7 +17,8 @@ export class InitialComponent implements OnInit {
   ListSports: CarouselItem[] = []
   ListMostPlayers: CarouselItem[] = []
   constructor(
-    private serviceGames: GamesService
+    private serviceGames: GamesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -26,7 +28,9 @@ export class InitialComponent implements OnInit {
     this.getTopSports();
     this.getPeoresJuegos();
   }
-
+  GoToPlatforms(){
+    this.router.navigate(['/platforms']);
+  }
   TraerMejoresJuegos(){
     this.serviceGames.ObtenerTopGames().subscribe(
       (games) =>{
