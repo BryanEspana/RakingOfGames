@@ -33,4 +33,7 @@ export class HeaderComponent implements OnInit {
   GoToPlatforms(){
     this.router.navigate(['/platforms']);
   }
+  GoToContacts(){
+    this.router.navigate(['/contacts']);
+  }
 }

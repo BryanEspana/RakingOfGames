@@ -2,3 +2,13 @@
     margin-top: 6rem;
     padding: 10px 15%;
 }
+.graficas{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+iframe{
+    margin: 10px;
+}

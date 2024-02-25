@@ -15,6 +15,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { PlataformasComponent } from './pages/plataformas/plataformas.component';
 import { NgxLoadingModule } from "ngx-loading";
+import { ContactsComponent } from './pages/contacts/contacts.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NgxLoadingModule } from "ngx-loading";
     CarrouselComponent,
     StadisticsComponent,
     GamesDetailComponent,
-    PlataformasComponent
+    PlataformasComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
