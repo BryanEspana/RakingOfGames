@@ -23,8 +23,11 @@
         <button class="btnBlue" (click)="Back()">Atras</button>
       </div>
     </div>
+    <div style="margin-top: 20px; width: 300px;">
+      <input type="text" [(ngModel)]="filtroBusqueda"  (input)="filtrarJuegos()" class="inputs" placeholder="Buscar">
+    </div>
     <div class="divJuegos">
-      <div *ngFor="let item of items" class="carousel-item" (click)="GoToGame(item._id || '')">
+      <div *ngFor="let item of itemsFiltrados" class="carousel-item" (click)="GoToGame(item._id || '')">
         <div class="imgDiv">
           <img src="{{ item.image }}" alt="{{ item.name }}" class="imgGame">
           <p class="Metacritic">{{item.rating}}/5</p>

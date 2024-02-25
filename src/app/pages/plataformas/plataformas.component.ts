@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { StoresService } from 'src/services/Stores/Stores.service';
 import { CarouselItem } from '../Carrousel/Carrousel.component';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 export interface Stores {
   games:       any[];
@@ -30,6 +31,8 @@ export interface StoreID {
 })
 
 export class PlataformasComponent implements OnInit {
+  filtroBusqueda: string = '';
+  itemsFiltrados: any[] = []; 
   items: CarouselItem[] = [];
   storeId: string = '';
   DataStore: StoreID | undefined;
@@ -55,24 +58,24 @@ export class PlataformasComponent implements OnInit {
 
   }
   GoInfoStore(storeId: string, NameStoreId: string){
+    
     window.scrollTo(0, 0);
     console.log("este es el storeid; " + storeId);
     this.loading = true;
     if(storeId != undefined && storeId != null){
       this.storesService.getStoresById(storeId).subscribe((data: any) => {
         this.DataStore = data;
-        console.log("info de datastore", this.DataStore);
-        console.log("info de datastore", this.DataStore?.name);
-        console.log("info de data", data);
-        console.log("info de data", data.name);
+
       });
 
       this.storesService.getGamesForStores(NameStoreId).subscribe((data: any) =>{
         this.items = data;
+        this.filtrarJuegos(); 
         this.loading = false;
         this.GoInfoStoreActivate = true;
         console.log(data);
       });
+
     
     }
 
@@ -84,5 +87,23 @@ export class PlataformasComponent implements OnInit {
 
   Back(){
     this.GoInfoStoreActivate = false;
+  }
+  filtrarJuegos() {
+    if (!this.filtroBusqueda) {
+      this.itemsFiltrados = this.items;
+    } else {
+      this.itemsFiltrados = this.items.filter(item =>
+        item.name.toLowerCase().includes(this.filtroBusqueda.toLowerCase())
+      );
+
+      if (this.itemsFiltrados.length === 0) {
+        // Mostrar Sweet Alert si no hay juegos que coincidan con la búsqueda
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No hay juegos con ese nombre',
+        });
+      }
+    }
   }
 }
