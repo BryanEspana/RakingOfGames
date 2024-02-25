@@ -14,6 +14,14 @@ export interface Stores {
   image:       string;
 }
 
+export interface StoreID {
+  id:          number;
+  name:        string;
+  domain:      string;
+  games_count: number;
+  image:       string;
+}
+
 
 @Component({
   selector: 'app-plataformas',
@@ -24,7 +32,10 @@ export interface Stores {
 export class PlataformasComponent implements OnInit {
   items: CarouselItem[] = [];
   storeId: string = '';
+  DataStore: StoreID | undefined;
+  GoInfoStoreActivate: boolean = false;
   NameStoreId: string = '';
+  loading: boolean = false;
   stores: Stores[] = [];
   constructor(
      private storesService: StoresService,
@@ -44,15 +55,25 @@ export class PlataformasComponent implements OnInit {
 
   }
   GoInfoStore(storeId: string, NameStoreId: string){
+    window.scrollTo(0, 0);
     console.log("este es el storeid; " + storeId);
+    this.loading = true;
     if(storeId != undefined && storeId != null){
       this.storesService.getStoresById(storeId).subscribe((data: any) => {
-        console.log(data);  
+        this.DataStore = data;
+        console.log("info de datastore", this.DataStore);
+        console.log("info de datastore", this.DataStore?.name);
+        console.log("info de data", data);
+        console.log("info de data", data.name);
       });
 
       this.storesService.getGamesForStores(NameStoreId).subscribe((data: any) =>{
+        this.items = data;
+        this.loading = false;
+        this.GoInfoStoreActivate = true;
         console.log(data);
       });
+    
     }
 
   }
@@ -61,4 +82,7 @@ export class PlataformasComponent implements OnInit {
     this.route.navigate(['/games', gameId]);
   }
 
+  Back(){
+    this.GoInfoStoreActivate = false;
+  }
 }

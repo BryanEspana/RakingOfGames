@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, map, throwError } from 'rxjs';
 import { GET_ALL_GAMES_BY_STORES, GET_ALL_STORES, GET_STORE } from 'src/app/config/backEndRoutes';
 import { API_URL } from 'src/app/config/config';
 
@@ -24,6 +25,20 @@ constructor(
   }
   public getGamesForStores(id: string) {
     const url = `${API_URL}${GET_ALL_GAMES_BY_STORES}/${id}`;
-    return this.http.get(url);
+    return this.http.get<any[]>(url, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    }).pipe(
+      map(response => response.map(game => ({
+        _id: game._id,
+        name: game.name,
+        genre: game.genres.length > 0 ? game.genres[0].name : 'Unknown', // Asume el primer género si existe, de lo contrario 'Unknown'
+        image: game.background_image,
+        rating: game.rating
+      }))),
+      catchError(err => {
+        console.error("ERROR al obtener los juegos:", err);
+        return throwError(() => err);
+      })
+    )
   }
 }

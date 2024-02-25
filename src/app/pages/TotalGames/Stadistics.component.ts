@@ -3,11 +3,11 @@ import { CarouselItem } from '../Carrousel/Carrousel.component';
 import { GamesService } from 'src/services/games.service';
 
 @Component({
-  selector: 'app-TotalGames',
-  templateUrl: './TotalGames.component.html',
-  styleUrls: ['./TotalGames.component.scss']
+  selector: 'app-Stadistics',
+  templateUrl: './Stadistics.component.html',
+  styleUrls: ['./Stadistics.component.scss']
 })
-export class TotalGamesComponent implements OnInit {
+export class StadisticsComponent implements OnInit {
   ListGames: CarouselItem[] = []
   searchText?: string
   constructor(

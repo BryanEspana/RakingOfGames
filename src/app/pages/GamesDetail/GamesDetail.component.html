@@ -43,6 +43,13 @@
           </div>
         </div>
       </div>
+      <label>Disponible en:</label>
+      <div *ngFor="let stores of gameDetails.stores" class="genre">
+        <div class="genre">
+          {{stores.store.name}}
+        </div>
+
+      </div>
       
 
     </div>

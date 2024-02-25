@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   GoToGames(){
-    this.router.navigate(['/total-games']);
+    this.router.navigate(['/stadistic-games']);
   }
   GoHome(){
     this.router.navigate(['/home']);

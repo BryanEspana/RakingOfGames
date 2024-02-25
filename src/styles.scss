@@ -281,3 +281,48 @@ h1, h2, h3, h4, h5, h6{
   margin-top: 1rem;
   color: white;
 }
+.imgGame{
+  width: 270px; /* Fija el ancho de la imagen */
+  height: 180px; /* Fija el alto de la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin distorsionarse */
+  display: block; /* Elimina cualquier espacio extra alrededor de la imagen */
+  margin: 0 auto; 
+  border-radius: 20px;
+}
+.carousel-item{
+  background-color: var(--color-bordes);
+  border-radius: 20px;
+}
+.textGame{
+  padding: 10px 20px;
+}
+.category{
+  color: #808080;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+.name{
+  font-weight: 600;
+  font-size: 20px !important;
+}
+.imgDiv{
+position: relative;
+}
+.Metacritic{
+position: absolute;
+bottom: 0px;
+font-size: 21px;
+width: 80px;
+height: 42px;
+/* border-bottom-left-radius: 20px; */
+padding: 2px 10px;
+align-items: center;
+display: flex;
+/* border-bottom-right-radius: 20px; */
+justify-content: center;
+padding-right: 15px;
+/* justify-content: center; */
+/* background-color: rgba(0, 0, 0, 0.7294117647); */
+background: var(--color-primary);
+border-radius: 19px;
+}

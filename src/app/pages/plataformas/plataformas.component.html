@@ -1,5 +1,6 @@
-<div class="PageTotalGames">
-  <div class="displayrow divDeItems3" >
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '4px' }"></ngx-loading>
+<div class="PageTotalGames" >
+  <div class="displayrow divDeItems3" *ngIf="!GoInfoStoreActivate">
     <div class="item" *ngFor="let store of stores" (click)="GoInfoStore(store.id.toString(), store.slug)">
       <div class="circlebtn">
         <img src={{store.image}} class="icons">
@@ -8,15 +9,30 @@
     </div>
   </div>
 
-  <div class="GamesDiv">
-    <div *ngFor="let item of items" class="carousel-item" (click)="GoToGame(item._id || '')">
-      <div class="imgDiv">
-        <img src="{{ item.image }}" alt="{{ item.name }}" class="imgGame">
-        <p class="Metacritic">{{item.rating}}/5</p>
+  <div class="GamesDiv"  *ngIf="GoInfoStoreActivate">
+    <div class="divInfoStore">
+      <div class="displayrow">
+        <img src={{DataStore?.image}} alt="" class="imgDemostrar" style="margin-right: 10px;">
+        <div>
+          <h1 style="margin-bottom: 10px;">{{DataStore?.name}}</h1>
+          <label style="margin-bottom: 10px;">Dominio: {{DataStore?.domain}}</label>
+          <p style="margin-bottom: 10px;">Juegos: {{DataStore?.games_count}}</p>
+        </div> 
       </div>
-      <div class="textGame">
-        <p class="category">{{ item.genre }}</p>
-        <h3 class="name">{{ item.name }}</h3>
+      <div>
+        <button class="btnBlue" (click)="Back()">Atras</button>
+      </div>
+    </div>
+    <div class="divJuegos">
+      <div *ngFor="let item of items" class="carousel-item" (click)="GoToGame(item._id || '')">
+        <div class="imgDiv">
+          <img src="{{ item.image }}" alt="{{ item.name }}" class="imgGame">
+          <p class="Metacritic">{{item.rating}}/5</p>
+        </div>
+        <div class="textGame">
+          <p class="category">{{ item.genre }}</p>
+          <h3 class="name">{{ item.name }}</h3>
+        </div>
       </div>
     </div>
   </div>
