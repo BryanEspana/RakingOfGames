@@ -31,6 +31,12 @@ export class InitialComponent implements OnInit {
   GoToPlatforms(){
     this.router.navigate(['/platforms']);
   }
+  GoToStadistics(){
+    this.router.navigate(['/stadistic-games']);
+  }
+  GoToContacts(){
+    this.router.navigate(['/contacts']);
+  }
   TraerMejoresJuegos(){
     this.serviceGames.ObtenerTopGames().subscribe(
       (games) =>{

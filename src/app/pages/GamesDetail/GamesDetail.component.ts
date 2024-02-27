@@ -226,26 +226,38 @@ export class GamesDetailComponent implements OnInit {
     }
 
     DeleteComent(commentId: string){
-      this.CommentService.deleteComment(commentId).subscribe(
-        response => {
-          console.log('Comentario eliminado', response);
-          this.getComments();
-          Swal.fire({
-            icon: 'success',
-            title: '¡Exito!',
-            text: 'Comentario eliminado con exito!',
-          })
-        },
-        error => {
-          this.getComments();
-
-          Swal.fire({
-            icon: 'success',
-            title: '¡Exito!',
-            text: 'Comentario eliminado con exito!',
-          })
-          console.error('Error al eliminar el comentario:', error);
+      Swal.fire({
+        title: '¿Estás seguro de que quieres eliminar este comentario?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: '¡Sí, elimínalo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.CommentService.deleteComment(commentId).subscribe(
+            response => {
+              console.log('Comentario eliminado', response);
+              this.getComments();
+              Swal.fire({
+                icon: 'success',
+                title: '¡Exito!',
+                text: 'Comentario eliminado con exito!',
+              })
+            },
+            error => {
+              this.getComments();
+    
+              Swal.fire({
+                icon: 'success',
+                title: '¡Exito!',
+                text: 'Comentario eliminado con exito!',
+              })
+              console.error('Error al eliminar el comentario:', error);
+            }
+          );
         }
-      );
+      });
     }
 }
