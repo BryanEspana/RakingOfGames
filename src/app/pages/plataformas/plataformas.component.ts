@@ -4,6 +4,19 @@ import { CarouselItem } from '../Carrousel/Carrousel.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+interface GameResponse {
+  games: Game[];
+  totalPages: number;
+}
+
+interface Game {
+  _id: string;
+  name: string;
+  genre: string;
+  image: string;
+  rating: number;
+}
+
 export interface Stores {
   games:       any[];
   _id:         string;
@@ -32,11 +45,13 @@ export interface StoreID {
 
 export class PlataformasComponent implements OnInit {
   filtroBusqueda: string = '';
+  totalPages: number = 1;
   p: number = 1;
   itemsFiltrados: any[] = []; 
   items: CarouselItem[] = [];
   storeId: string = '';
   DataStore: StoreID | undefined;
+  DataGamesStore: GameResponse | undefined;
   GoInfoStoreActivate: boolean = false;
   NameStoreId: string = '';
   loading: boolean = false;
@@ -48,6 +63,8 @@ export class PlataformasComponent implements OnInit {
 
   ngOnInit() {
     this.getAllStores();
+    console.log("DataStore", this.DataStore);
+    this.cambiarPagina(1);
   }
 
   getAllStores(){
@@ -59,22 +76,27 @@ export class PlataformasComponent implements OnInit {
 
   }
   GoInfoStore(storeId: string, NameStoreId: string){
-    
     window.scrollTo(0, 0);
-    console.log("este es el storeid; " + storeId);
     this.loading = true;
-    if(storeId != undefined && storeId != null){
+    this.NameStoreId = NameStoreId;
+
+    if(storeId){
       this.storesService.getStoresById(storeId).subscribe((data: any) => {
         this.DataStore = data;
-
       });
 
-      this.storesService.getGamesForStores(NameStoreId).subscribe((data: any) =>{
+      const page = 1; 
+      this.storesService.getGamesForStores(NameStoreId, page).subscribe((data: any) =>{
         this.items = data;
+        console.log("Items", this.items);
+        this.totalPages = Math.ceil(data.totalGames /20);
         this.filtrarJuegos(); 
         this.loading = false;
         this.GoInfoStoreActivate = true;
-        console.log(data);
+        this.DataGamesStore = data;
+        console.log("DataGamesStore", this.DataGamesStore);
+        console.log("", data);
+        
       });
 
     
@@ -98,7 +120,6 @@ export class PlataformasComponent implements OnInit {
       );
 
       if (this.itemsFiltrados.length === 0) {
-        // Mostrar Sweet Alert si no hay juegos que coincidan con la búsqueda
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -107,4 +128,20 @@ export class PlataformasComponent implements OnInit {
       }
     }
   }
+  cambiarPagina(page: number) {
+    this.loading = true;
+    this.p = page; 
+    this.storesService.getGamesForStores(this.NameStoreId, page).subscribe((data: any) => {
+      this.items = data.games || data; 
+      this.totalPages = Math.ceil(data.totalGames / 20);
+      this.filtrarJuegos();
+      this.loading = false;
+    }, error => {
+      this.loading = false;
+      console.error(error);
+    });
+  }
+  
+
+  
 }

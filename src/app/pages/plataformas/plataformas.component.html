@@ -38,15 +38,19 @@
         </div>
       </div>
     </div>
-    <pagination-controls class="center" (pageChange)="p = $event"
+<pagination-controls
+  class="center"
+  [maxSize]="totalPages"
+  (pageChange)="cambiarPagina($event)"
     previousLabel="Anterior"
-    nextLabel="Siguiente"
-    firstLabel="Primero"
-    lastLabel="Último"
-    screenReaderPaginationLabel="Paginación"
-    screenReaderPageLabel="página"
-    screenReaderCurrentLabel="Estás en la página">
+  nextLabel="Siguiente"
+  firstLabel="Primero"
+  lastLabel="Último"
+  screenReaderPaginationLabel="Paginación"
+  screenReaderPageLabel="página"
+  screenReaderCurrentLabel="Estás en la página">
 </pagination-controls>
+
 
   </div>
 </div>
