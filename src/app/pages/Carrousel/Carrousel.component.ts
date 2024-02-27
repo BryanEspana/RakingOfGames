@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export interface CarouselItem {
  //_id opcional
   _id: string;
+  games?:any[];
   name: string;
   genre: string; // Cambiado a 'genre' para reflejar que solo se mostrará un género
   image: string;

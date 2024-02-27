@@ -46,6 +46,7 @@ export interface StoreID {
 export class PlataformasComponent implements OnInit {
   filtroBusqueda: string = '';
   totalPages: number = 1;
+  totalItems: number = 0;
   p: number = 1;
   itemsFiltrados: any[] = []; 
   items: CarouselItem[] = [];
@@ -60,11 +61,9 @@ export class PlataformasComponent implements OnInit {
      private storesService: StoresService,
      private route: Router
   ) { }
-
+  //c
   ngOnInit() {
     this.getAllStores();
-    console.log("DataStore", this.DataStore);
-    this.cambiarPagina(1);
   }
 
   getAllStores(){
@@ -75,7 +74,7 @@ export class PlataformasComponent implements OnInit {
   GetInfoStores(storeId: string){    
 
   }
-  GoInfoStore(storeId: string, NameStoreId: string){
+  GoInfoStore(storeId: string, NameStoreId: string): void{
     window.scrollTo(0, 0);
     this.loading = true;
     this.NameStoreId = NameStoreId;
@@ -87,16 +86,16 @@ export class PlataformasComponent implements OnInit {
 
       const page = 1; 
       this.storesService.getGamesForStores(NameStoreId, page).subscribe((data: any) =>{
-        this.items = data;
-        console.log("Items", this.items);
-        this.totalPages = Math.ceil(data.totalGames /20);
+        this.items = data.games;
+        console.log("total de paginas totalPages: " + data.totalPages)      
+        this.totalPages = data.totalPages;  
+        this.totalItems = this.totalPages * 20;
+
         this.filtrarJuegos(); 
         this.loading = false;
-        this.GoInfoStoreActivate = true;
-        this.DataGamesStore = data;
-        console.log("DataGamesStore", this.DataGamesStore);
-        console.log("", data);
         
+        this.GoInfoStoreActivate = true;
+        this.cambiarPagina(page);
       });
 
     
@@ -128,16 +127,18 @@ export class PlataformasComponent implements OnInit {
       }
     }
   }
+  
   cambiarPagina(page: number) {
-    this.loading = true;
-    this.p = page; 
+    console.log("cambiarPagina llamado con página: ", page);
+
+    this.p = page;
     this.storesService.getGamesForStores(this.NameStoreId, page).subscribe((data: any) => {
-      this.items = data.games || data; 
-      this.totalPages = Math.ceil(data.totalGames / 20);
+      this.items = data.games; 
+      this.totalPages = data.totalPages; 
+      console.log("total pages: ", this.totalPages)
+      console.log("Cambio de página a: ", page, " con un total de páginas: ", this.totalPages);
       this.filtrarJuegos();
-      this.loading = false;
     }, error => {
-      this.loading = false;
       console.error(error);
     });
   }

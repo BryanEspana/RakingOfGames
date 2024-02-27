@@ -6,7 +6,7 @@ import { API_URL } from 'src/app/config/config';
 
 interface GameResponse {
   games: Game[];
-  totalGames: number;
+  totalPages: number;
 }
 
 interface Game {
@@ -102,18 +102,26 @@ constructor(
     const url = `${API_URL}${GET_STORE}/${id}`;
     return this.http.get(url);
   }
-  public  getGamesForStores(id: string, page: number = 1): Observable<SimplifiedGame[]> {
+  public getGamesForStores(id: string, page: number = 1): Observable<{ games: SimplifiedGame[], totalPages: number }> {
     const url = `${API_URL}${GET_ALL_GAMES_BY_STORES}/${id}?page=${page}`;
     return this.http.get<GameResponse>(url, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     }).pipe(
-      map(response => response.games.map(game => ({
-        _id: game._id,
-        name: game.name,
-        genre: game.genres.length > 0 ? game.genres[0].name : 'Unknown',
-        image: game.background_image,
-        rating: game.rating
-      }))),
-    )
+      map(response => {
+        // Asume que response.totalPages ya es el número correcto de páginas totales
+        const totalPages = response.totalPages;
+        // Transforma los juegos a SimplifiedGame[]
+        const games = response.games.map(game => ({
+          _id: game._id,
+          name: game.name,
+          genre: game.genres.length > 0 ? game.genres[0].name : 'Unknown',
+          image: game.background_image,
+          rating: game.rating
+        }));
+        // Retorna un objeto que contiene tanto los juegos transformados como el total de páginas
+        return { games, totalPages };
+      })
+    );
   }
+  
 }
