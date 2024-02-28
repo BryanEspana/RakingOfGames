@@ -177,3 +177,58 @@ p{
 .custom-rating .p-rating-icon {
   font-size: 24px; /* Cambia esto al tamaño que prefieras */
 }
+
+.br{
+  background-color: white;
+}
+
+/*
+
+   <br class="br">
+          <div *ngFor="let subComentario of subCommentsArray" class="comentario">
+            <div class="comentario">
+              <label>Anonimo:</label>
+              <label>{{comentario.respuestas}}</label>
+            </div>
+*/
+
+.divider{
+  margin: 10px 0px;
+  border-bottom: 1px solid var(--color-claro);
+
+}
+.divider2{
+  border-bottom: 0.5px solid gray;
+  margin: 10px 0px;
+}
+.comentar{
+  background-color: var(--color-claro);
+  color: white;
+  border: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.comentar:hover{
+  background-color: var(--color-secondary);
+}
+.btnEnviar{
+  background-color: var(--color-secondary);
+  color: white;
+  border: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 5px;
+}
+.inputENviar{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: transparent;
+  margin: 10px 0px;
+}
+.truncate {
+  width: 226px; /* Define el ancho máximo del texto antes de truncarlo */
+  white-space: nowrap; /* Evita que el texto se envuelva a la siguiente línea */
+  overflow: hidden; /* Oculta el texto que excede el ancho del contenedor */
+  text-overflow: ellipsis; /* Añade "..." al final del texto truncado */
+}

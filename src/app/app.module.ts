@@ -39,7 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RatingModule,
     FormsModule,
     NgxLoadingModule.forRoot({}),
-    NgxPaginationModule
+    NgxPaginationModule,
+    
     
   ],
   providers: [],

@@ -23,8 +23,8 @@
         <button class="btnBlue" (click)="Back()">Atras</button>
       </div>
     </div>
-    <div style="margin-top: 20px; width: 300px;">
-      <input type="text" [(ngModel)]="filtroBusqueda"  (input)="filtrarJuegos()" class="inputs" placeholder="Buscar">
+    <div style="margin-top: 20px; width: 300px; padding: 0% 11%;" >
+      <input type="text"  style="margin-top: 20px; width: 300px;" [(ngModel)]="filtroBusqueda"  (input)="filtrarJuegos()" class="inputs" placeholder="Buscar">
     </div>
     <div class="divJuegos">
       <div *ngFor="let item of itemsFiltrados | paginate: { itemsPerPage: 20, currentPage: p, totalItems: totalItems }" class="carousel-item" (click)="GoToGame(item._id || '')">

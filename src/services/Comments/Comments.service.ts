@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ADD_COMMENTS, DELETE_COMMENT, GET_COMMENTS, UPDATE_COMMENT } from 'src/app/config/backEndRoutes';
+import { ADD_COMMENTS, DELETE_COMMENT, GET_COMMENTS, RESPONDER_COMENTARIO, UDPATE_SUBCOMENTARY, UPDATE_COMMENT } from 'src/app/config/backEndRoutes';
 import { API_URL } from 'src/app/config/config';
 
 @Injectable({
@@ -36,5 +36,20 @@ constructor(
       const url = `${API_URL}${DELETE_COMMENT}${commentId}`;
       return this.http.delete<any>(url);
     }
+
+    public AddResponderComment(commentId: string, respuesta: string): Observable<any> {
+      const url = `${API_URL}${RESPONDER_COMENTARIO}/${commentId}`;
+      return this.http.post<any>(url, { respuesta });
+    }
+
+    public UpdateComments(commentId: string, SubCommentId: string, respuesta: string): Observable<any>{
+      const url = `${API_URL}${UDPATE_SUBCOMENTARY}${commentId}/responses/${SubCommentId}`;
+      return this.http.put<any>(url, {respuesta});
+    }
+
+    
+
+
+
 
 }

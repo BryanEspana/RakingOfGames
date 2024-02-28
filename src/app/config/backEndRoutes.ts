@@ -33,3 +33,9 @@ export const GET_ALL_STORES = '/All-stores'
 export const GET_STORE = '/stores';
 //Games for store
 export const GET_ALL_GAMES_BY_STORES = '/stores/games';
+
+
+//Responder comentarios
+export const RESPONDER_COMENTARIO = '/games/comments/add-response';
+//ACtualizar subcomentario
+export const UDPATE_SUBCOMENTARY = '/games/comments/';

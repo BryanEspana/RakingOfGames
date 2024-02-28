@@ -35,6 +35,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0% 11%;
     width: 100%;
 
 }
@@ -43,8 +44,10 @@
     margin: 20px;
 }
 .divJuegos{
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .center{
     justify-content: center;

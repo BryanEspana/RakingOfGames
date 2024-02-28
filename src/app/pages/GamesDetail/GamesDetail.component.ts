@@ -14,9 +14,14 @@ export interface Comentario {
   title: string;
   description: string;
   rating: number;
+  respuestas?: Respuestas[];
   // Agrega cualquier otro campo que necesites
 }
-
+export interface Respuestas{
+  _id: string;
+  respuesta: string;
+  user: string;
+}
 @Component({
   selector: 'app-TotalGames',
   templateUrl: './GamesDetail.component.html',
@@ -26,12 +31,27 @@ export class GamesDetailComponent implements OnInit {
   shortScreenshots: any[] = [];
   responsiveOptions: any[] | undefined;
   ratingGame: number = 5;
+  RespuestaComment: string = '';
+  subCommentsArray: any[] = [
+    {
+      _id: uuidv4(),
+      respuesta: 'Respuesta 1',
+      user: 'Usuario 1'
+    },
+  ];
+  //ngmodel
+  respuestaComentario: string = '';
+  subComments: boolean = true;
   ListProximosLanzamientos: CarouselItem[] = []
- 
+  contestarComentarioBoolean: boolean = false;
+  ActualizarComentarioBoolean: boolean = false;
   gameId: string = '';
   gameDetails: any = {};
+  respuestas: {[key: string]: string} = {};
   stars: number[] = [1, 2, 3, 4, 5]; // Representa un arreglo de 5 estrellas
   Divinfo: any;
+  editingCommentId: string | null = null;
+  editingSubCommentId: string | null = null;
   comentario:  Comentario ={
     title: '',
     description: '',
@@ -256,8 +276,76 @@ export class GamesDetailComponent implements OnInit {
               })
               console.error('Error al eliminar el comentario:', error);
             }
+
           );
         }
       });
     }
+    ContestarComentario(){
+      this.contestarComentarioBoolean =  true;   
+      this.ActualizarComentarioBoolean = false;
+    }
+
+  SendRespuestaComment(commentId: string): void { 
+    this.CommentService.AddResponderComment(commentId, this.respuestaComentario).subscribe(
+      response => {
+        console.log('Respuesta enviada con éxito', response);
+        this.getComments();
+        this.RespuestaComment = '';
+        this.contestarComentarioBoolean = false;
+        Swal.fire({
+          icon: 'success',
+          title: '¡Exito!',
+          text: 'Respuesta enviada con exito!',
+        });
+      },
+      error => {
+        this.getComments();
+        this.RespuestaComment = '';
+        this.contestarComentarioBoolean = false;
+        Swal.fire({
+          icon: 'success',
+          title: '¡Exito!',
+          text: 'Respuesta enviada con exito!',
+        });
+        console.error('Error al enviar la respuesta:', error);
+      }
+    );
+  }
+  editSubComment(commentId: string, subCommentId: string){
+    this.contestarComentarioBoolean = false;
+    this.ActualizarComentarioBoolean = true;
+    this.editingCommentId = commentId;
+    this.editingSubCommentId = subCommentId;
+    this.ActualizarComentarioBoolean = true;
+    // Encuentra el subcomentario que se va a editar y establece su respuesta actual como el valor del input
+    const comentario = this.comentarios.find(c => c._id === commentId);
+    const subcomentario = comentario?.respuestas?.find(r => r._id === subCommentId);
+    this.respuestaComentario = subcomentario ? subcomentario.respuesta : '';
+  }
+  EditSubCommentSend(){
+    if (!this.editingCommentId || !this.editingSubCommentId) return; // Asegúrate de tener ambos IDs
+
+  this.CommentService.UpdateComments(this.editingCommentId, this.editingSubCommentId, this.respuestaComentario).subscribe(
+    response => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Exito!',
+        text: 'Respuesta enviada con exito!',
+      });
+      this.respuestaComentario = ""
+      this.getComments();
+    },
+    error => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Exito!',
+        text: 'Respuesta enviada con exito!',
+      });
+      this.respuestaComentario = ""
+      this.getComments();
+
+    }
+  );
+  }
 }

@@ -56,7 +56,6 @@
   </div>
   <!--COmentarios-->
   <div class="ComentaryPage">
-
     <h1 class="padding">Comentarios:</h1>
     <div class="divComentary" >
       <div *ngFor="let comentario of comentarios" class="comentario">
@@ -82,10 +81,39 @@
           <span class="rating">({{comentario.rating}})</span>
         </div>
         <div>
-          <label class="Contenido">{{ comentario.description }}</label>
-          
+          <div class="displayrow" style="justify-content: space-between; align-items: end;">
+            <label class="Contenido">{{ comentario.description }}</label>
+            <div>
+              <img src="../../../assets/Games/comments.svg" class="editIcon"
+              (click)="ContestarComentario()">
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div>
+            <div *ngFor="let respuesta of comentario.respuestas" style="display: flex; flex-direction: row; align-items: center; border-bottom: 1px solid gray; padding: 10px; justify-content: space-between; width: 100%;">
+                <div style="display: flex; flex-direction: row;">
+                  <label style="font-weight: 600;">Anonimo: </label>
+                  <label style="font-weight: 400;" class="truncate"> {{respuesta.respuesta}}</label>
+                </div>
+                <div>
+                  <img src="../../../assets/Games/edit.svg" class="editIcon"
+                  (click)="editSubComment(comentario._id!, respuesta._id)">
+                </div>
+            </div>
+            <!--ACtualizar-->
+            <div *ngIf="ActualizarComentarioBoolean && comentario._id === editingCommentId" class="displayrow">
+              <input type="text" placeholder="Actualizar comentario" class="inputENviar" [(ngModel)]="respuestaComentario">
+              <button class="btnEnviar" (click)="EditSubCommentSend()">Enviar</button>
+            </div>
+            <!--Crear-->
+          <div *ngIf="contestarComentarioBoolean" class="displayrow">
+            <input type="text" placeholder="Escribir respuesta" class="inputENviar" [(ngModel)]="respuestaComentario">
+            <button class="btnEnviar" (click)="comentario._id && SendRespuestaComment(comentario._id)">Enviar</button>
+          </div>
+          </div>
+       
         </div>
-      </div>
+      
       
     </div>
   </div>
