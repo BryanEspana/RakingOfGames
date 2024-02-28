@@ -348,4 +348,38 @@ export class GamesDetailComponent implements OnInit {
     }
   );
   }
+  DeleteSubCommentSend(commentId: string, subCommentId: string){
+    this.contestarComentarioBoolean = false;
+    this.ActualizarComentarioBoolean = true;
+    this.editingCommentId = commentId;
+    this.editingSubCommentId = subCommentId;
+    this.ActualizarComentarioBoolean = true;
+    // Encuentra el subcomentario que se va a editar y establece su respuesta actual como el valor del input
+    const comentario = this.comentarios.find(c => c._id === commentId);
+    const subcomentario = comentario?.respuestas?.find(r => r._id === subCommentId);
+    this.respuestaComentario = subcomentario ? subcomentario.respuesta : '';
+    if (!this.editingCommentId || !this.editingSubCommentId) return; 
+
+  this.CommentService.DeleteComments(this.editingCommentId, this.editingSubCommentId).subscribe(
+    response => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Exito!',
+        text: 'Borrado con exito!',
+      });
+      this.respuestaComentario = ""
+      this.getComments();
+    },
+    error => {
+      Swal.fire({
+        icon: 'success',
+        title: '¡Exito!',
+        text: 'Borrado con exito!',
+      });
+      this.respuestaComentario = ""
+      this.getComments();
+
+    }
+  );
+  }
 }

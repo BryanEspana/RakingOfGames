@@ -227,7 +227,7 @@ p{
   margin: 10px 0px;
 }
 .truncate {
-  width: 226px; /* Define el ancho máximo del texto antes de truncarlo */
+  width: 200px; /* Define el ancho máximo del texto antes de truncarlo */
   white-space: nowrap; /* Evita que el texto se envuelva a la siguiente línea */
   overflow: hidden; /* Oculta el texto que excede el ancho del contenedor */
   text-overflow: ellipsis; /* Añade "..." al final del texto truncado */

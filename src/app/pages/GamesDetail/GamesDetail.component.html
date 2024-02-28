@@ -59,21 +59,31 @@
     <h1 class="padding">Comentarios:</h1>
     <div class="divComentary" >
       <div *ngFor="let comentario of comentarios" class="comentario">
-        <div class="comentarioUser">
-          <div class="imgFondo">
-            <!-- Icono de usuario, puedes mantenerlo estático o dinámico según prefieras -->
-            <img src="../../../assets/Games/userSecret.svg" class="imgUser">
-          </div> 
-          <div class="tituloDiv">
-            <p>{{ comentario.title }}</p>
-          </div> 
-          <div>
-            <img src="../../../assets/Games/edit.svg" class="editIcon"
-            (click)="editComment(comentario)">
+        <div class="comentarioUser" style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+          <div class="displayrow" style="justify-content: space-between; width: 100%;"  >
+            <div class="displayrow">
+
+              <div class="imgFondo">
+                <!-- Icono de usuario, puedes mantenerlo estático o dinámico según prefieras -->
+                <img src="../../../assets/Games/userSecret.svg" class="imgUser">
+              </div> 
+              <div class="tituloDiv">
+                <p>{{ comentario.title }}</p>
+              </div> 
+              <div>
+            </div>
           </div>
-          <div>
-            <img src="../../../assets/Games/trash.svg" class="editIcon"
-            (click)="comentario._id && DeleteComent(comentario._id)">
+          <div class="displayrow">
+            
+            <div>
+              <img src="../../../assets/Games/edit.svg" class="editIcon"
+              (click)="editComment(comentario)">
+            </div>
+            <div>
+              <img src="../../../assets/Games/trash.svg" class="editIcon"
+              (click)="comentario._id && DeleteComent(comentario._id)">
+            </div>
+          </div>
           </div>
         </div>
         <div>
@@ -95,9 +105,15 @@
                   <label style="font-weight: 600;">Anonimo: </label>
                   <label style="font-weight: 400;" class="truncate"> {{respuesta.respuesta}}</label>
                 </div>
-                <div>
-                  <img src="../../../assets/Games/edit.svg" class="editIcon"
-                  (click)="editSubComment(comentario._id!, respuesta._id)">
+                <div class="displayrow">
+                  <div>
+                    <img src="../../../assets/Games/edit.svg" class="editIcon"
+                    (click)="editSubComment(comentario._id!, respuesta._id)">
+                  </div>
+                  <div>
+                    <img src="../../../assets/Games/trash.svg" class="editIcon"
+                    (click)="DeleteSubCommentSend(comentario._id!, respuesta._id)">
+                  </div>
                 </div>
             </div>
             <!--ACtualizar-->

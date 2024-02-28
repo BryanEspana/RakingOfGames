@@ -39,3 +39,5 @@ export const GET_ALL_GAMES_BY_STORES = '/stores/games';
 export const RESPONDER_COMENTARIO = '/games/comments/add-response';
 //ACtualizar subcomentario
 export const UDPATE_SUBCOMENTARY = '/games/comments/';
+//Eliminar subcomentario
+export const DELETE_SUBCOMENTARY = '/games/comments/';

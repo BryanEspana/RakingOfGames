@@ -47,6 +47,11 @@ constructor(
       return this.http.put<any>(url, {respuesta});
     }
 
+    public DeleteComments(commentId: string, SubCommentId: string): Observable<any>{
+      const url = `${API_URL}${UDPATE_SUBCOMENTARY}${commentId}/responses/${SubCommentId}`;
+      return this.http.delete<any>(url);
+    }
+
     
 
 
